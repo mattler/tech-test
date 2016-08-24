@@ -34,6 +34,10 @@ class Page
 
     public function getDescription()
     {
-        return $this->domXpath->query('//meta[@name="description"]/@content')[0]->textContent;
+        $description = $this->domXpath->query('//div[@class="productText"]');
+        if ($description->length) {
+            return trim($description[0]->textContent);
+        }
+        return '';
     }
 }
