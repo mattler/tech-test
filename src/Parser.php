@@ -4,16 +4,21 @@ namespace Laver;
 
 class Parser
 {
-    private $url;
+    /**
+     * @var Page
+     */
+    private $page;
 
     /**
      * Parser constructor.
      *
-     * @param $url
+     * @param Page $page
+     *
+     * @internal param $url
      */
-    public function __construct($url)
+    public function __construct(Page $page)
     {
-        $this->url = $url;
+        $this->page = $page;
     }
 
     public function run()
