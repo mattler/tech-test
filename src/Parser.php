@@ -5,6 +5,11 @@ namespace Laver;
 class Parser
 {
     /**
+     * @var array
+     */
+    protected $results = [];
+
+    /**
      * @var Page
      */
     private $page;
@@ -12,20 +17,44 @@ class Parser
     /**
      * Parser constructor.
      *
-     * @param Page $page
+     * @param PageWithProducts $page
      *
      * @internal param $url
      */
-    public function __construct(Page $page)
+    public function __construct(PageWithProducts $page)
     {
         $this->page = $page;
+    }
+
+    public function setResults(array $results)
+    {
+        $this->results = $results;
+
+        return $this;
+    }
+
+    public function getResults()
+    {
+        if (empty($this->results)) {
+            $this->setResults($this->page->getProducts());
+        }
+
+        return $this->results;
+    }
+
+    public function getTotal()
+    {
+        return array_reduce($this->results, function ($carry, $item) {
+            $carry += $item['unit_price'];
+            return $carry;
+        }, 0);
     }
 
     public function run()
     {
         return [
-            "results" => [],
-            "total" => 0
+            "results" => $this->getResults(),
+            "total"   => $this->getTotal()
         ];
     }
 }
