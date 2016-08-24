@@ -38,6 +38,7 @@ class Page
         if ($description->length) {
             return trim($description[0]->textContent);
         }
+
         return '';
     }
 }
