@@ -9,8 +9,8 @@ class PageWithProducts extends Page
             $page = $this->getProductPage($productItem);
             $return[] = [
                 'title' => $this->getProductTitle($productItem),
+                'unit_price' => doubleval($this->getProductPrice($productItem)),
                 'size'  => $page->getSize(),
-                'unit_price' => doubleval($this->getPrice($productItem)),
                 'description' => $page->getDescription()
             ];
         }
@@ -22,7 +22,7 @@ class PageWithProducts extends Page
         return trim($productItem->getElementsByTagName('h3')[0]->textContent);
     }
 
-    private function getPrice(\DOMNode $productItem)
+    private function getProductPrice(\DOMNode $productItem)
     {
         $priceString = $this->domXpath->query('.//div[@class="pricing"]', $productItem)[0]->textContent;
         preg_match("/&pound(.*)\\/unit/", $priceString, $matches);
