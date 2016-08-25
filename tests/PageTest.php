@@ -18,7 +18,7 @@ class PageTest extends PHPUnit_Framework_TestCase
         $response    = new Response(200, ['Content-Length' => 1066],
             file_get_contents(__DIR__ . '/product_to_parse.html'));
         $page        = new Page($response);
-        $this->assertEquals($description, $page->getDescription());
+        $this->assertEquals($description, $page->getProductDescription());
 
     }
 }

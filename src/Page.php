@@ -9,6 +9,16 @@ use GuzzleHttp\Psr7\Response;
 class Page
 {
     /**
+     * @var Response
+     */
+    protected $response;
+
+    /**
+     * @var DOMXPath
+     */
+    protected $domXpath;
+
+    /**
      * Page constructor.
      *
      * @param Response $response
@@ -18,6 +28,8 @@ class Page
         $this->response = $response;
 
         $domDocument = new DOMDocument();
+
+        // suppress libxml errors due to incompatibility with html5
         libxml_use_internal_errors(true);
         $domDocument->loadHTML($response->getBody());
         libxml_clear_errors();
@@ -34,7 +46,7 @@ class Page
         return null;
     }
 
-    public function getDescription()
+    public function getProductDescription()
     {
         $description = $this->domXpath->query('//div[@class="productText"]');
         if ($description->length) {

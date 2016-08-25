@@ -4,6 +4,9 @@ namespace Laver;
 
 class PageWithProducts extends Page
 {
+    /**
+     * Loop through each of the product items on the page and gather results
+     */
     public function getProducts()
     {
         $return = [];
@@ -11,9 +14,9 @@ class PageWithProducts extends Page
             $page     = $this->getProductPage($productItem);
             $return[] = [
                 'title'       => $this->getProductTitle($productItem),
-                'unit_price'  => doubleval($this->getProductPrice($productItem)),
                 'size'        => $page->getSize(),
-                'description' => $page->getDescription()
+                'unit_price'  => doubleval($this->getProductPrice($productItem)),
+                'description' => $page->getProductDescription()
             ];
         }
 
@@ -34,6 +37,13 @@ class PageWithProducts extends Page
         return $matches[1];
     }
 
+    /**
+     * Create a new Page object for the url that the product points to
+     *
+     * @param \DOMNode $productItem
+     *
+     * @return Page
+     */
     private function getProductPage(\DOMNode $productItem)
     {
         $url = $this->getProductLink($productItem);

@@ -6,6 +6,12 @@ use GuzzleHttp\Client;
 
 class PageFactory
 {
+    /**
+     * @param string $url The endpoint to request
+     * @param bool $withProducts Which type of Page class to create
+     *
+     * @return Page|PageWithProducts
+     */
     public static function create($url, $withProducts = false)
     {
         $client   = new Client();
