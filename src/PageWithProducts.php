@@ -15,7 +15,7 @@ class PageWithProducts extends Page
             $return[] = [
                 'title'       => $this->getProductTitle($productItem),
                 'size'        => $page->getSize(),
-                'unit_price'  => doubleval($this->getProductPrice($productItem)),
+                'unit_price'  => $this->getProductPrice($productItem),
                 'description' => $page->getProductDescription()
             ];
         }
@@ -34,7 +34,7 @@ class PageWithProducts extends Page
             $productItem)[0]->textContent;
         preg_match("/&pound(.*)\\/unit/", $priceString, $matches);
 
-        return $matches[1];
+        return doubleval($matches[1]);
     }
 
     /**

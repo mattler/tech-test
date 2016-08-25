@@ -13,7 +13,7 @@ class PageWithProductsTest extends PHPUnit_Framework_TestCase
         $this->assertCount(7, $products);
 
         $this->assertEquals('Sainsbury\'s Apricot Ripe & Ready x5', $products[0]['title']);
-        $this->assertEquals(39185, $products[0]['size']);
+        $this->assertEquals(round(39185 / 1024, 2) . 'kb', $products[0]['size']);
         $this->assertEquals(3.50, $products[0]['unit_price']);
         $this->assertEquals('Apricots', $products[0]['description']);
     }

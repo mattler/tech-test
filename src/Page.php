@@ -40,7 +40,7 @@ class Page
     public function getSize()
     {
         if ($this->response->hasHeader('Content-Length')) {
-            return $this->response->getHeader('Content-Length')[0];
+            return round($this->response->getHeader('Content-Length')[0] / 1024, 2) . 'kb';
         }
 
         return null;

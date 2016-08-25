@@ -9,7 +9,7 @@ class PageTest extends PHPUnit_Framework_TestCase
     {
         $response = new Response(200, ['Content-Length' => 1066], 'Hi');
         $page     = new Page($response);
-        $this->assertEquals(1066, $page->getSize());
+        $this->assertEquals(round(1066 / 1024, 2) . 'kb', $page->getSize());
     }
 
     public function test_page_has_description()
