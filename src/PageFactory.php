@@ -1,4 +1,6 @@
-<?php namespace Laver;
+<?php
+
+namespace Laver;
 
 use GuzzleHttp\Client;
 
@@ -12,6 +14,7 @@ class PageFactory
         if ($withProducts) {
             return new PageWithProducts($response);
         }
+
         return new Page($response);
     }
 

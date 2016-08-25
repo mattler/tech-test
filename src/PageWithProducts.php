@@ -1,4 +1,6 @@
-<?php namespace Laver;
+<?php
+
+namespace Laver;
 
 class PageWithProducts extends Page
 {

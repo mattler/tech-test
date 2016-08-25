@@ -1,4 +1,6 @@
-<?php namespace Laver;
+<?php
+
+namespace Laver;
 
 use DOMDocument;
 use DOMXPath;
